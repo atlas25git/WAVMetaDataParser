@@ -1,0 +1,5 @@
+Audio Channels :8
+Sampling Frequency :48000
+BitsPerSample :24
+Bit Rate:9216000
+Duration :8s

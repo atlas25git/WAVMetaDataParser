@@ -1,0 +1,5 @@
+Audio Channels :2
+Sampling Frequency :22050
+BitsPerSample :16
+Bit Rate:705600
+Duration :122s

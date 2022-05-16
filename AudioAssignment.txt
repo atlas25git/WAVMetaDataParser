@@ -1,0 +1,48 @@
+1) Write a program to display metadata properties of a wav file in a text file as :
+Audio Channels : value
+Sampling Frequency : value
+BitsPerSample   : value
+Bit Rate(kbps) : value
+Duration  : value
+Input : Single wav file
+Output : Text file containing metadata properties
+
+
+2) Write a program which halves the sampling rate of given wav file(Duration should remain same).
+For example if the sampling rate of a given wav file is 48Khz , the output  wav file should be of 24Khz.
+Input : Single wav file
+Output : Wav file with half sampling rate
+
+#pragma once
+#include <stdint.h>
+#include <fstream>
+
+class CWavHeader
+{
+	public:
+		//RIFF Chunk descriptor
+		uint8_t RIFF_ChunkID[4];
+		uint32_t m_nChunkSize;
+		uint8_t m_nFormat[4];
+
+		//FMT sub-chunk
+
+		uint8_t m_nSubChunk1ID[4];
+		uint32_t m_nSubChunk1Size;
+		uint16_t m_nAudioFormat;
+		uint16_t m_nNumChannels;
+		uint32_t m_nSampleRate;
+		uint32_t m_nByteRate;
+		uint16_t m_nBlockAlign;
+		uint16_t m_nBitsPerSample;
+
+		//Data SubChunk
+		uint8_t m_nSubChunk2ID[4];
+		uint32_t m_SubChunk2Size;
+
+		size_t m_nBytesRead;
+
+		CWavHeader();
+		void SetWavHeader(FILE* fileName, size_t wavHeaderSize);
+		int GetBytesRead();
+};
